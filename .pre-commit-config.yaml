@@ -1,0 +1,63 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - name: All executables should be shebang scripts
+        id: check-executables-have-shebangs
+      - name: All shebang scripts should be executable
+        id: check-shebang-scripts-are-executable
+      - name: All non-empty files should end with a newline
+        id: end-of-file-fixer
+      - name: No files should have trailing whitespaces
+        id: trailing-whitespace
+
+  - repo: https://github.com/doublify/pre-commit-rust
+    rev: v1.0
+    hooks:
+      - name: Format Rust files
+        id: fmt
+
+  - repo: https://github.com/hukkin/mdformat
+    rev: 0.7.22
+    hooks:
+      - name: Format Markdown files
+        id: mdformat
+        additional_dependencies:
+          - mdformat-rustfmt
+          - mdformat-shfmt
+          - mdformat-frontmatter
+          - mdformat-gfm
+          - mdformat-gfm-alerts
+          - mdformat-tables
+        types:
+          - markdown
+
+  - repo: https://github.com/rbubley/mirrors-prettier
+    rev: v3.5.3
+    hooks:
+      - name: Format YAML files
+        id: prettier
+        types:
+          - yaml
+
+  - repo: https://github.com/ComPWA/taplo-pre-commit
+    rev: v0.9.3
+    hooks:
+      - name: Format TOML files
+        id: taplo-format
+
+  - repo: https://github.com/EmbarkStudios/cargo-deny
+    rev: 0.18.2
+    hooks:
+      - name: Check Cargo dependencies with `cargo deny`
+        id: cargo-deny
+
+  - repo: local
+    hooks:
+      - name: Lint Rust code with `cargo clippy`
+        id: clippy
+        language: system
+        entry: cargo clippy --all-targets --all-features
+        types:
+          - rust
+        pass_filenames: false

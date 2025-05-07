@@ -1,0 +1,38 @@
+[package]
+name = "playground"
+version = "0.1.0"
+edition = "2024"
+description = "Rust playground to work on isolate files"
+authors = ["João Sampaio <jpmelos@gmail.com>"]
+license = "MIT"
+homepage = "https://github.com/jpmelos/rust-playground"
+repository = "https://github.com/jpmelos/rust-playground"
+keywords = ["rust"]
+categories = [
+  "command-line-utilities",
+  "development-tools",
+  "development-tools::debugging",
+]
+include = ["Cargo.lock", "Cargo.toml", "LICENSE", "README.md", "src/*"]
+
+[[bin]]
+name = "playground"
+path = "src/main.rs"
+
+[lints.rust]
+warnings = "deny"
+
+[lints.clippy]
+all = { level = "deny", priority = -1 }
+pedantic = { level = "deny", priority = -1 }
+nursery = { level = "deny", priority = -1 }
+cargo = { level = "deny", priority = -1 }
+manual-string-new = "allow"
+option-if-let-else = "allow"
+too-many-lines = "allow"
+needless-pass-by-value = "allow"
+multiple-crate-versions = "allow"
+
+[dependencies]
+anyhow = "1.0.98"
+nix = { version = "0.30.1", features = ["fs"] }
