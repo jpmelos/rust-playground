@@ -32,6 +32,8 @@ option-if-let-else = "allow"
 too-many-lines = "allow"
 needless-pass-by-value = "allow"
 multiple-crate-versions = "allow"
+missing-panics-doc = "allow"
+missing-errors-doc = "allow"
 
 [dependencies]
 anyhow = "1.0.98"
