@@ -8,8 +8,9 @@ function show_usage {
     echo "Commands:"
     echo "  fmt     Format the specified Rust file using cargo fmt"
     echo "  lint    Run cargo clippy on the specified Rust file"
+    echo "  test    Run tests using cargo test"
     echo "  run     Run the specified Rust file using cargo run"
-    echo "  all     Run fmt, lint, and run commands in sequence"
+    echo "  all     Run fmt, lint, test, and run commands in sequence"
     exit 1
 }
 
@@ -26,6 +27,11 @@ function lint_file {
     cargo clippy --all-targets --all-features
 }
 
+function test_file {
+    echo "Running cargo test..."
+    cargo test
+}
+
 function run_file {
     echo "Running cargo run..."
     cargo run
@@ -39,7 +45,7 @@ command="$1"
 target_file="$2"
 
 case "$command" in
-    fmt | lint | run | all) ;;
+    fmt | lint | test | run | all) ;;
     *)
         echo "Error: Unknown command '$command'"
         show_usage
@@ -78,12 +84,16 @@ case "$command" in
     lint)
         lint_file
         ;;
+    test)
+        test_file
+        ;;
     run)
         run_file
         ;;
     all)
         format_file
         lint_file
+        test_file
         run_file
         ;;
 esac

@@ -7,8 +7,9 @@ a full Cargo project for each one.
 
 - **Format**: Format your Rust code with `rustfmt`.
 - **Lint**: Check your code with `clippy`.
+- **Test**: Run tests using `cargo test`.
 - **Run**: Execute your Rust file.
-- **All**: Run format, lint, and execution in sequence.
+- **All**: Run format, lint, test, and execution in sequence.
 
 ## Installation
 
@@ -27,8 +28,9 @@ pgrs <command> <path-to-rust-file>
 
 pgrs fmt example.rs    # Format the file with rustfmt.
 pgrs lint example.rs   # Lint the file with clippy.
+pgrs test example.rs   # Run tests in the file.
 pgrs run example.rs    # Run the Rust file.
-pgrs all example.rs    # Format, lint, then run the file.
+pgrs all example.rs    # Format, lint, test, then run the file.
 ```
 
 ## How It Works
